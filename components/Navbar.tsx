@@ -1,5 +1,4 @@
 "use client";
-
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,29 +18,25 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/academic", label: "Academic", icon: GraduationCap },
   { href: "/research", label: "Research", icon: Search },
-  { href: "/portfolio", label: "Portfolio", icon: FileText },
+  // { href: "/portfolio", label: "Portfolio", icon: FileText },
   { href: "/videos", label: "Videos", icon: Video },
   { href: "/literature", label: "Literature", icon: BookOpen },
 ];
-
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [hoveredPath, setHoveredPath] = React.useState<string | null>(null);
-
   React.useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   return (
     <header
       className={cn(
@@ -72,7 +67,6 @@ export default function Navbar() {
             Nabid
           </span>
         </Link>
-
         {/* --- DESKTOP NAVIGATION --- */}
         <div
           className="hidden md:flex items-center gap-1"
@@ -100,7 +94,6 @@ export default function Navbar() {
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
-
                 {/* Glass Hover Pill */}
                 {hoveredPath === href && !isActive && (
                   <motion.div
@@ -111,7 +104,6 @@ export default function Navbar() {
                     exit={{ opacity: 0 }}
                   />
                 )}
-
                 <Icon
                   className={cn(
                     "h-4 w-4 relative z-10",
@@ -123,19 +115,17 @@ export default function Navbar() {
             );
           })}
         </div>
-
         {/* --- ACTIONS --- */}
         <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-full cursor-pointer w-10 h-10 hover:bg-white/20 dark:hover:bg-white/5 border border-transparent hover:border-white/20 transition-all"
+            className="rounded-full cursor-pointer w-10 h-10 bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-600 border border-zinc-300 dark:border-zinc-600 shadow-md transition-all"
           >
             <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-amber-500" />
             <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-indigo-400" />
           </Button>
-
           <Button
             variant="ghost"
             size="icon"
@@ -150,7 +140,6 @@ export default function Navbar() {
           </Button>
         </div>
       </nav>
-
       {/* --- MOBILE GLASS OVERLAY --- */}
       <AnimatePresence>
         {isMobileMenuOpen && (
